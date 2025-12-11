@@ -1,0 +1,33 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+    output = "/home/ubuntu/rogertech_website/nextjs_space/node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+// Formulário de contato
+model Formulario {
+  id        String   @id @default(cuid())
+  nome      String
+  email     String
+  mensagem  String   @db.Text
+  data      DateTime @default(now())
+  status    String   @default("novo") // novo, lido, respondido
+  formType  String   @default("contato") // contato, parceria, etc
+  
+  @@map("formularios")
+}
+
+// Métricas das redes sociais (atualizáveis manualmente)
+model SocialMetrics {
+  id            String   @id @default(cuid())
+  platform      String   @unique // tiktok, instagram, youtube
+  followers     Int      @default(0)
+  lastUpdated   DateTime @default(now()) @updatedAt
+  
+  @@map("social_metrics")
+}

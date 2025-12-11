@@ -1,0 +1,6 @@
+# robots.txt para RogerTech
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://rogertech.com.br/sitemap.xml
